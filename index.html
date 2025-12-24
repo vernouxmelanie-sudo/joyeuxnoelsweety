@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joyeux Noël, Sweety 🎄✨</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #1b1b2f, #0f0f1a);
+  overflow: hidden;
+  font-family: "Georgia", serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container {
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  z-index: 2;
+  animation: fadeIn 2s ease;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 0.95em;
+  background: #c9184a;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: #ff4d6d;
+}
+
+#reveal {
+  display: none;
+  margin-top: 25px;
+  animation: fadeIn 2s ease;
+}
+
+.heart {
+  font-size: 40px;
+  margin: 15px 0;
+  animation: beat 1.5s infinite;
+}
+
+@keyframes beat {
+  0%,50%,100% { transform: scale(1); }
+  25%,75% { transform: scale(1.1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.star, .flocon, .heart-float {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.flocon {
+  background: white;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+.heart-float {
+  color: pink;
+  font-size: 20px;
+  background: none;
+}
+
+#finalMessage {
+  display: none;
+  font-size: 1.2em;
+  margin-top: 20px;
+  animation: fadeIn 2s ease;
+  color: #ffe4e1;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(100vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Joyeux Noël, Sweety 🎄✨</h1>
+  <p>
+    J’ai préparé un petit moment pour nous…<br>
+    Pour rire, partager et créer de beaux souvenirs ensemble.
+  </p>
+
+  <button onclick="showSurprise()">Découvrir</button>
+
+  <div id="reveal">
+    <div class="heart">❤️</div>
+    <p>
+      🎭 <strong>NAIM</strong><br>
+      📅 <strong>10 avril 2026</strong><br>
+      📍 <strong>SUMMUM</strong><br>
+      🎟️ Deux billets<br>
+      Une soirée pleine de rires et de complicité !
+    </p>
+    <p id="finalMessage">✨ Sweety, prépare-toi à passer un moment inoubliable 🎭✨</p>
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+  Votre navigateur ne supporte pas l’audio.
+</audio>
+
+<script>
+function showSurprise() {
+  document.getElementById("reveal").style.display = "block";
+
+  setTimeout(function() {
+    document.getElementById("finalMessage").style.display = "block";
+    const heart = document.querySelector(".heart");
+    heart.style.animation = "beat 1s infinite";
+  }, 5000);
+
+  var audio = document.getElementById("music");
+  audio.play().catch(() => {
+    let btn = document.createElement('button');
+    btn.textContent = "Écouter la musique 🎵";
+    btn.onclick = () => audio.play();
+    document.body.appendChild(btn);
+  });
+}
+
+// étoiles
+for (let i = 0; i < 30; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.style.width = Math.random()*3+"px";
+  star.style.height = star.style.width;
+  star.style.top = Math.random()*100+"vh";
+  star.style.left = Math.random()*100+"vw";
+  star.style.opacity = Math.random();
+  document.body.appendChild(star);
+}
+
+// flocons
+for (let i = 0; i < 20; i++) {
+  const flocon = document.createElement("div");
+  flocon.className = "flocon";
+  flocon.style.left = Math.random()*100+"vw";
+  flocon.style.animationDuration = (Math.random()*3 + 2)+"s";
+  document.body.appendChild(flocon);
+}
+
+// cœurs flottants
+for (let i = 0; i < 10; i++) {
+  const h = document.createElement("div");
+  h.className = "heart-float";
+  h.style.left = Math.random()*100+"vw";
+  h.style.top = Math.random()*100+"vh";
+  h.textContent = "❤️";
+  document.body.appendChild(h);
+}
+</script>
+
+</body>
+</html>
